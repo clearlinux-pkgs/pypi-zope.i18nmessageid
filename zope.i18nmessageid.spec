@@ -4,7 +4,7 @@
 #
 Name     : zope.i18nmessageid
 Version  : 4.3.1
-Release  : 21
+Release  : 22
 URL      : https://files.pythonhosted.org/packages/d8/0b/2b09daacbe377581125e181b5db32156db1dc4accbeb6efbbdcdb22377f0/zope.i18nmessageid-4.3.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/d8/0b/2b09daacbe377581125e181b5db32156db1dc4accbeb6efbbdcdb22377f0/zope.i18nmessageid-4.3.1.tar.gz
 Summary  : Message Identifiers for internationalization
