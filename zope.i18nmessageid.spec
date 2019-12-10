@@ -4,7 +4,7 @@
 #
 Name     : zope.i18nmessageid
 Version  : 5.0.0
-Release  : 24
+Release  : 25
 URL      : https://files.pythonhosted.org/packages/0b/fe/cc8a0809ba0767844b27989e73392e2e5a29da62534aa2983cbf1b762460/zope.i18nmessageid-5.0.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/0b/fe/cc8a0809ba0767844b27989e73392e2e5a29da62534aa2983cbf1b762460/zope.i18nmessageid-5.0.0.tar.gz
 Summary  : Message Identifiers for internationalization
@@ -25,11 +25,7 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-``zope.i18nmessageid``
 ======================
-.. image:: https://img.shields.io/pypi/v/zope.i18nmessageid.svg
-:target: https://pypi.python.org/pypi/zope.i18nmessageid/
-:alt: Latest Version
 
 %package license
 Summary: license components for the zope.i18nmessageid package.
@@ -59,14 +55,14 @@ python3 components for the zope.i18nmessageid package.
 
 %prep
 %setup -q -n zope.i18nmessageid-5.0.0
+cd %{_builddir}/zope.i18nmessageid-5.0.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573585617
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1576018287
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -82,7 +78,7 @@ python3 setup.py build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test
+PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
