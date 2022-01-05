@@ -4,7 +4,7 @@
 #
 Name     : zope.i18nmessageid
 Version  : 5.0.1
-Release  : 42
+Release  : 43
 URL      : https://files.pythonhosted.org/packages/fb/13/88454ff27740d9be8140a7be208b09114be79d99c732f058f4b01a684590/zope.i18nmessageid-5.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/fb/13/88454ff27740d9be8140a7be208b09114be79d99c732f058f4b01a684590/zope.i18nmessageid-5.0.1.tar.gz
 Summary  : Message Identifiers for internationalization
@@ -13,26 +13,20 @@ License  : ZPL-2.1
 Requires: zope.i18nmessageid-license = %{version}-%{release}
 Requires: zope.i18nmessageid-python = %{version}-%{release}
 Requires: zope.i18nmessageid-python3 = %{version}-%{release}
-Requires: setuptools
-Requires: six
 BuildRequires : buildreq-distutils3
 BuildRequires : coverage-python
 BuildRequires : pluggy
 BuildRequires : py-python
+BuildRequires : pypi(setuptools)
+BuildRequires : pypi(six)
 BuildRequires : pytest
-BuildRequires : setuptools
-BuildRequires : six
 BuildRequires : tox
 BuildRequires : virtualenv
 BuildRequires : zope.exceptions-python
 BuildRequires : zope.testrunner-python
 
 %description
-``zope.i18nmessageid``
 ======================
-.. image:: https://img.shields.io/pypi/v/zope.i18nmessageid.svg
-:target: https://pypi.python.org/pypi/zope.i18nmessageid/
-:alt: Latest Version
 
 %package license
 Summary: license components for the zope.i18nmessageid package.
@@ -72,16 +66,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583876093
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1641415519
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
