@@ -4,12 +4,14 @@
 #
 Name     : pypi-zope.i18nmessageid
 Version  : 5.0.1
-Release  : 45
+Release  : 46
 URL      : https://files.pythonhosted.org/packages/fb/13/88454ff27740d9be8140a7be208b09114be79d99c732f058f4b01a684590/zope.i18nmessageid-5.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/fb/13/88454ff27740d9be8140a7be208b09114be79d99c732f058f4b01a684590/zope.i18nmessageid-5.0.1.tar.gz
 Summary  : Message Identifiers for internationalization
 Group    : Development/Tools
 License  : ZPL-2.1
+Requires: pypi-zope.i18nmessageid-filemap = %{version}-%{release}
+Requires: pypi-zope.i18nmessageid-lib = %{version}-%{release}
 Requires: pypi-zope.i18nmessageid-license = %{version}-%{release}
 Requires: pypi-zope.i18nmessageid-python = %{version}-%{release}
 Requires: pypi-zope.i18nmessageid-python3 = %{version}-%{release}
@@ -26,6 +28,24 @@ BuildRequires : pypi-virtualenv
 
 %description
 ======================
+
+%package filemap
+Summary: filemap components for the pypi-zope.i18nmessageid package.
+Group: Default
+
+%description filemap
+filemap components for the pypi-zope.i18nmessageid package.
+
+
+%package lib
+Summary: lib components for the pypi-zope.i18nmessageid package.
+Group: Libraries
+Requires: pypi-zope.i18nmessageid-license = %{version}-%{release}
+Requires: pypi-zope.i18nmessageid-filemap = %{version}-%{release}
+
+%description lib
+lib components for the pypi-zope.i18nmessageid package.
+
 
 %package license
 Summary: license components for the pypi-zope.i18nmessageid package.
@@ -47,6 +67,7 @@ python components for the pypi-zope.i18nmessageid package.
 %package python3
 Summary: python3 components for the pypi-zope.i18nmessageid package.
 Group: Default
+Requires: pypi-zope.i18nmessageid-filemap = %{version}-%{release}
 Requires: python3-core
 Provides: pypi(zope.i18nmessageid)
 Requires: pypi(setuptools)
@@ -59,13 +80,16 @@ python3 components for the pypi-zope.i18nmessageid package.
 %prep
 %setup -q -n zope.i18nmessageid-5.0.1
 cd %{_builddir}/zope.i18nmessageid-5.0.1
+pushd ..
+cp -a zope.i18nmessageid-5.0.1 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1649800365
+export SOURCE_DATE_EPOCH=1653003501
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -82,6 +106,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+python3 setup.py build
+
+popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
@@ -91,9 +124,26 @@ python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+python3 -tt setup.py build install --root=%{buildroot}-v3
+popd
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
+
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-pypi-zope.i18nmessageid
+
+%files lib
+%defattr(-,root,root,-)
+/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
