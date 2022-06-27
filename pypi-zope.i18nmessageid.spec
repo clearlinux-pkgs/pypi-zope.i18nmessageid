@@ -4,7 +4,7 @@
 #
 Name     : pypi-zope.i18nmessageid
 Version  : 5.0.1
-Release  : 46
+Release  : 47
 URL      : https://files.pythonhosted.org/packages/fb/13/88454ff27740d9be8140a7be208b09114be79d99c732f058f4b01a684590/zope.i18nmessageid-5.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/fb/13/88454ff27740d9be8140a7be208b09114be79d99c732f058f4b01a684590/zope.i18nmessageid-5.0.1.tar.gz
 Summary  : Message Identifiers for internationalization
@@ -89,7 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1653003501
+export SOURCE_DATE_EPOCH=1656359062
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -132,7 +132,7 @@ export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
 python3 -tt setup.py build install --root=%{buildroot}-v3
 popd
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
