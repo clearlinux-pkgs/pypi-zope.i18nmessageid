@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-zope.i18nmessageid
-Version  : 6.0.0
-Release  : 58
-URL      : https://files.pythonhosted.org/packages/2b/d9/8bb6a5344ddff3c4a31e264ae942bf129964e1c080dc3aefdb6d0c57b49d/zope.i18nmessageid-6.0.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/2b/d9/8bb6a5344ddff3c4a31e264ae942bf129964e1c080dc3aefdb6d0c57b49d/zope.i18nmessageid-6.0.0.tar.gz
+Version  : 6.0.1
+Release  : 59
+URL      : https://files.pythonhosted.org/packages/67/0a/2f7ef863b4a19b01c87558edea49d155908f3588d02e3269bbf3b42164b1/zope.i18nmessageid-6.0.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/67/0a/2f7ef863b4a19b01c87558edea49d155908f3588d02e3269bbf3b42164b1/zope.i18nmessageid-6.0.1.tar.gz
 Summary  : Message Identifiers for internationalization
 Group    : Development/Tools
 License  : ZPL-2.1
@@ -20,7 +20,6 @@ BuildRequires : buildreq-distutils3
 BuildRequires : pypi(coverage)
 BuildRequires : pypi(py)
 BuildRequires : pypi(setuptools)
-BuildRequires : pypi(six)
 BuildRequires : pypi(zope.testrunner)
 BuildRequires : pypi-pluggy
 BuildRequires : pypi-pytest
@@ -79,17 +78,16 @@ Requires: pypi-zope.i18nmessageid-filemap = %{version}-%{release}
 Requires: python3-core
 Provides: pypi(zope.i18nmessageid)
 Requires: pypi(setuptools)
-Requires: pypi(six)
 
 %description python3
 python3 components for the pypi-zope.i18nmessageid package.
 
 
 %prep
-%setup -q -n zope.i18nmessageid-6.0.0
-cd %{_builddir}/zope.i18nmessageid-6.0.0
+%setup -q -n zope.i18nmessageid-6.0.1
+cd %{_builddir}/zope.i18nmessageid-6.0.1
 pushd ..
-cp -a zope.i18nmessageid-6.0.0 buildavx2
+cp -a zope.i18nmessageid-6.0.1 buildavx2
 popd
 
 %build
@@ -97,7 +95,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679587140
+export SOURCE_DATE_EPOCH=1679673497
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
