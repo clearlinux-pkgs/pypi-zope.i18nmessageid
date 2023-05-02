@@ -5,14 +5,12 @@
 #
 Name     : pypi-zope.i18nmessageid
 Version  : 6.0.1
-Release  : 59
+Release  : 60
 URL      : https://files.pythonhosted.org/packages/67/0a/2f7ef863b4a19b01c87558edea49d155908f3588d02e3269bbf3b42164b1/zope.i18nmessageid-6.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/67/0a/2f7ef863b4a19b01c87558edea49d155908f3588d02e3269bbf3b42164b1/zope.i18nmessageid-6.0.1.tar.gz
 Summary  : Message Identifiers for internationalization
 Group    : Development/Tools
 License  : ZPL-2.1
-Requires: pypi-zope.i18nmessageid-filemap = %{version}-%{release}
-Requires: pypi-zope.i18nmessageid-lib = %{version}-%{release}
 Requires: pypi-zope.i18nmessageid-license = %{version}-%{release}
 Requires: pypi-zope.i18nmessageid-python = %{version}-%{release}
 Requires: pypi-zope.i18nmessageid-python3 = %{version}-%{release}
@@ -36,24 +34,6 @@ BuildRequires : pypi-virtualenv
 :target: https://pypi.python.org/pypi/zope.i18nmessageid/
 :alt: Latest Version
 
-%package filemap
-Summary: filemap components for the pypi-zope.i18nmessageid package.
-Group: Default
-
-%description filemap
-filemap components for the pypi-zope.i18nmessageid package.
-
-
-%package lib
-Summary: lib components for the pypi-zope.i18nmessageid package.
-Group: Libraries
-Requires: pypi-zope.i18nmessageid-license = %{version}-%{release}
-Requires: pypi-zope.i18nmessageid-filemap = %{version}-%{release}
-
-%description lib
-lib components for the pypi-zope.i18nmessageid package.
-
-
 %package license
 Summary: license components for the pypi-zope.i18nmessageid package.
 Group: Default
@@ -74,7 +54,6 @@ python components for the pypi-zope.i18nmessageid package.
 %package python3
 Summary: python3 components for the pypi-zope.i18nmessageid package.
 Group: Default
-Requires: pypi-zope.i18nmessageid-filemap = %{version}-%{release}
 Requires: python3-core
 Provides: pypi(zope.i18nmessageid)
 Requires: pypi(setuptools)
@@ -95,15 +74,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679673497
+export SOURCE_DATE_EPOCH=1683049665
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -145,14 +124,6 @@ popd
 %files
 %defattr(-,root,root,-)
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-pypi-zope.i18nmessageid
-
-%files lib
-%defattr(-,root,root,-)
-/usr/share/clear/optimized-elf/other*
-
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/pypi-zope.i18nmessageid/a0b53f43aab58b46bf79ba756c50771c605ab4c5
@@ -162,4 +133,5 @@ popd
 
 %files python3
 %defattr(-,root,root,-)
+/V3/usr/lib/python3*/*
 /usr/lib/python3*/*
