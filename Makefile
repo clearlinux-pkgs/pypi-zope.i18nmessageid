@@ -1,5 +1,5 @@
 PKG_NAME := pypi-zope.i18nmessageid
-URL = https://files.pythonhosted.org/packages/67/0a/2f7ef863b4a19b01c87558edea49d155908f3588d02e3269bbf3b42164b1/zope.i18nmessageid-6.0.1.tar.gz
+URL = https://files.pythonhosted.org/packages/c0/55/73436beb7a4fdb139cf0ac259a2a67519460f91b1756bac05ba9af038568/zope.i18nmessageid-6.1.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
