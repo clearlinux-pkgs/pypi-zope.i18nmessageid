@@ -7,7 +7,7 @@
 #
 Name     : pypi-zope.i18nmessageid
 Version  : 6.1.0
-Release  : 64
+Release  : 65
 URL      : https://files.pythonhosted.org/packages/c0/55/73436beb7a4fdb139cf0ac259a2a67519460f91b1756bac05ba9af038568/zope.i18nmessageid-6.1.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/c0/55/73436beb7a4fdb139cf0ac259a2a67519460f91b1756bac05ba9af038568/zope.i18nmessageid-6.1.0.tar.gz
 Summary  : Message Identifiers for internationalization
